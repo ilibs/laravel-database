@@ -1,0 +1,20 @@
+{
+    "name": "very/laravel-database",
+    "description": "Use laravel database as the mysql connection in Laravel",
+    "keywords": [ "laravel", "database" ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Xudong Cai",
+            "email": "caixudong@verystar.cn"
+        }
+    ],
+    "require": {
+        "illuminate/database": "5.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Very\\": "src/Very"
+        }
+    }
+}
