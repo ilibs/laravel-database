@@ -10,7 +10,6 @@
         }
     ],
     "require": {
-        "illuminate/database": "5.2.*|5.3.*"
     },
     "autoload": {
         "psr-4": {
