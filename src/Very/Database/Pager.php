@@ -47,9 +47,9 @@ class Pager
             if ($this->getPerPage()) {
                 $rs = $this->getResult($cmd, $this->getPerPage(), ($this->getCurrPage() - 1) * $this->getPerPage(), $params);
             } else {
-                if($this->getTotalCount() > $this->max_count) {
+                if ($this->getTotalCount() > $this->max_count) {
                     $rs = [];
-                }else{
+                } else {
                     $rs = $this->getAllResult($cmd, $params);
                 }
             }
@@ -107,7 +107,7 @@ class Pager
 
     public function setPerPage($per_page)
     {
-        $this->per_page = $per_page;
+        $this->per_page = max(1, $per_page);
     }
 
     public function getCurrPage()
