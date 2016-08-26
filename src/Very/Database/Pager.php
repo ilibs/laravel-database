@@ -83,7 +83,11 @@ class Pager
     public function setTotalCount($total_count)
     {
         $this->total_count = $total_count;
-        $this->setTotalPage(ceil($total_count / $this->getPerPage()));
+        if($this->getPerPage()) {
+            $this->setTotalPage(ceil($total_count / $this->getPerPage()));
+        }else{
+            $this->setTotalPage(1);
+        }
 
         return $this;
     }
@@ -107,7 +111,7 @@ class Pager
 
     public function setPerPage($per_page)
     {
-        $this->per_page = max(1, $per_page);
+        $this->per_page = $per_page;
     }
 
     public function getCurrPage()
