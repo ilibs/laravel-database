@@ -38,38 +38,30 @@ class MysqlConnection extends IlluminateMySqlConnection
 
     public function getAll($sql, $params = array())
     {
-        $this->setFetchMode(\PDO::FETCH_ASSOC);
         $result = $this->select($sql, $params);
-        $this->setFetchMode(\PDO::FETCH_OBJ);
         return $result;
     }
 
-    public function getOneAll($sql, $params = array(), $column_number = 0)
+    public function getOneAll($sql, $params = array())
     {
-        $this->setFetchMode(\PDO::FETCH_NUM);
         $all    = array();
         $result = $this->select($sql, $params);
         foreach ($result as $row) {
-            $all[] = $row[$column_number];
+            $all[] = array_shift($row);
         }
-        $this->setFetchMode(\PDO::FETCH_OBJ);
         return $all;
     }
 
     public function getRow($sql, $params = array())
     {
-        $this->setFetchMode(\PDO::FETCH_ASSOC);
         $result = $this->selectOne($sql, $params);
-        $this->setFetchMode(\PDO::FETCH_OBJ);
         return $result;
     }
 
-    public function getOne($sql, $params = array(), $column_number = 0)
+    public function getOne($sql, $params = array())
     {
-        $this->setFetchMode(\PDO::FETCH_NUM);
         $result = $this->selectOne($sql, $params);
-        $this->setFetchMode(\PDO::FETCH_OBJ);
-        return isset($result[$column_number]) ? $result[$column_number] : false;
+        return $result ? array_shift($result) : false;
     }
 
     public function makeUpdate($table, $where, $params = array(), $where_field = array())
